@@ -2,7 +2,11 @@ import React, {useEffect}from "react"
 import character from "../image/character.png"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
+const Hi = styled.div`
+	background-color: aqua;
+`;
 
 export default function Intro() {
   const navigate = useNavigate()
@@ -20,6 +24,7 @@ export default function Intro() {
       <img src = {character} alt="놀러갈래 아이콘" />
       <span>놀러갈래</span>
       <span><Link to ="/Login">Login</Link></span>
+      <Hi>asdfsaf</Hi>
     </>
   )
 }
