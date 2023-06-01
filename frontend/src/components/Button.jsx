@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import useStore from "./HomeStore";
 
 const SIZES = {
   sm: css`
@@ -43,11 +44,13 @@ const VARIANTS = {
 };
 
 function Button({disabled, size, variant, context}) {
+  const { setactivity } = useStore()
+
   const sizeStyle = SIZES[size];
   const variantStyle = VARIANTS[variant];
 
   function buttonClick(){
-    console.log(context);
+    setactivity(context);
   }
 
   return (

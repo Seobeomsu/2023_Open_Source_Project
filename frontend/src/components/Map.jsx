@@ -1,45 +1,45 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import useStore from './HomeStore';
+
+const Wrapper = styled.div`
+	display: block;
+`
 
 const Svg = styled.svg`
 	background-color: #0f4dc0;
 	width: 500px;
 	height: 700px;
 	path{	fill: #d1f2ff; }
-	path:hover { fill: #fbce7b; transition: 0.5s; }`
+	path:hover { fill: #fbce7b; transition: 0.5s; }
+	`
 
 export default function Map(){
 	const [legioncode , setLegion] = useState(0);
-
-	function legionsave(legion){
-		setLegion(legion);
-	}
+	const { setlegioncode } = useStore()
 
 	function mapclick(legion){
 		fillPath(legion.code);
-		legionsave(legion);
+		setLegion(legion);
+		setlegioncode(legion.code);
 	}
 
 	function fillPath(n){
 		if(legioncode){ // 이미선택된지역이 있으면 초기화
 			const svgElement = document.querySelector('svg');
 			const childElement = svgElement.children[legioncode.code];
-			childElement.style = "fill :#d1f2ff , :hover fill :#ff7e7e;" ;
+			childElement.style = "transition: 0.5s;"
+			childElement.style.fill = "#d1f2ff";
+			childElement.style = ":hover{fill : #fbce7b}"
 		}
 		const svgElement = document.querySelector('svg');
 		const childElement = svgElement.children[n];
-		childElement.style.fill = 'red';
+		childElement.style= "transition: 0.5s; fill: #dc3545;"
 	}
 
   return(
-		<>
-			{!(legioncode) && (
-        <p>지역을 선택해주세요!</p>
-      )}
-			
-			{legioncode && (
-        <p>선택한 지역은 {legioncode.name}입니다.</p>
-      )}
+		<Wrapper>
+			{!(legioncode) && (<p>지역을 선택해주세요!</p>)}{!!(legioncode) && (<p>선택한 지역은 {legioncode.name}입니다.</p>)}
 			<Svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 -50 500 700"
@@ -149,6 +149,6 @@ export default function Map(){
 					onClick={()=>mapclick({code : 16 , name : "전남"})}
 				/>
 			</Svg>
-		</>	
+		</Wrapper>	
   )
 }
