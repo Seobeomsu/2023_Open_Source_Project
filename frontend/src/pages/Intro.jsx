@@ -45,7 +45,7 @@ export default function Intro() {
     const timer = setTimeout(() => {
       setIsVisible(false)
       const timer2 = setTimeout(() => {
-        navigate("/login");
+        navigate("/home");
       }, 2000);
     }, 2000);
     return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 해제
