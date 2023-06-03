@@ -13,13 +13,13 @@ const SIZES = {
     --button-radius: 8px;
   `,
   lg: css`
-    --button-font-size: 1.25rem;
-    --button-padding: 16px 20px;
+    --button-font-size: 1.5rem;
+    --button-padding: 4px 8px;
     --button-radius: 12px;
   `
 };
 
-const VARIANTS = {
+const VARIS = {
   success: css`
     --button-color: #ffffff;
     --button-bg-color: #28a745;
@@ -36,18 +36,18 @@ const VARIANTS = {
     --button-hover-bg-color: #e0a800;
   `,
   activity: css`
-    --button-color: #ffffff;
-    --button-bg-color: #28a745;
+    --button-color: #252525;
+    --button-bg-color: #67af78;
     --button-hover-bg-color: #e0a800;
     --button-focus-bg-color: #dc3545;
   `
 };
 
-function Button({disabled, size, variant, context}) {
+function Button({disabled, size, vari, context}) {
   const { setactivity } = useStore()
 
   const sizeStyle = SIZES[size];
-  const variantStyle = VARIANTS[variant];
+  const variStyle = VARIS[vari];
 
   function buttonClick(){
     setactivity(context);
@@ -57,7 +57,7 @@ function Button({disabled, size, variant, context}) {
     <StyledButton
       disabled={disabled}
       sizeStyle={sizeStyle}
-      variantStyle={variantStyle}
+      variStyle={variStyle}
       onClick={buttonClick}
     >
       {context}
@@ -67,12 +67,11 @@ function Button({disabled, size, variant, context}) {
 
 const StyledButton = styled.button`
   ${(p) => p.sizeStyle}
-  ${(p) => p.variantStyle}
-
-  margin: 0;
-  border: none;
+  ${(p) => p.variStyle}
+  border: solid 0px #2402e2;
   cursor: pointer;
   font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
   font-size: var(--button-font-size, 1rem);
   padding: var(--button-padding, 12px 16px);
   border-radius: var(--button-radius, 8px);
