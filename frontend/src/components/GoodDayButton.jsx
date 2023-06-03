@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useStore from './HomeStore';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+const Wrap = styled.div`
+  div{
+    border-radius: 1px;
+    background-color: #b7b5ff;
+    width: 1px;
+    height: 1px;
+  }
+`
 
 const Button = styled.button`
   width: 230px;
@@ -28,17 +38,17 @@ const Button = styled.button`
 `
 
 export default function GoodDayButton() {
-  const { activity, legioncode, sethomevisible } = useStore()
+  const [  size , setsize] = useState(0);
+  const { activity, legioncode } = useStore()
   const Navigate = useNavigate();
 
   function GoodDayConvert(){
     console.log(activity,legioncode)
     if(!(activity==null) && !(legioncode==null)){
-      Navigate("/GoodDay");
-      // axios 연결 들어갈자리
-      //const timer = setTimeout(() => {
-      //  Navigate("/GoodDay");
-      //}, 2000);
+      setsize(3000);
+      const timer = setTimeout(() => {
+       Navigate("/GoodDay");
+      }, 2000)
     }else if(activity==null && legioncode==null){
      console.log("지역과 활동을 선택해주세요!");
     }else if(activity == null){
@@ -47,7 +57,17 @@ export default function GoodDayButton() {
       console.log("지역을 선택해주세요!");
     }
   }
+
   return (
-    <Button onClick={GoodDayConvert}>놀러가기 좋은날</Button>
+    <Wrap>
+      <motion.div
+      initial={{sacle: 10}}
+      animate={{scale: size}}
+      transition={{
+        duration: 2,
+      }}
+      />
+      <Button onClick={GoodDayConvert}>놀러가기 좋은날</Button>
+    </Wrap>
   )
 }

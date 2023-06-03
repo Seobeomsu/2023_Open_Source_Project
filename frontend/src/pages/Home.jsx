@@ -8,16 +8,14 @@ const Wrap = styled.div`
   display : flex;
   justify-content: center;
   background-color: #b7b5ff;
+  overflow: hidden;
 `
 
-
 export default function Home() {
-
-
   return (
-      <Wrap>
-        <Map/>
-        <LeisureSelectbox/>
-     </Wrap>
+    <Wrap>
+      <Map/>
+      <LeisureSelectbox/>
+    </Wrap>
   )
 }
