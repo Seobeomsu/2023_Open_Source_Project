@@ -1,0 +1,2 @@
+http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=Cy2hhB4CjnW9YfGUIRuM8eJD2ywoJH1SBWFqYHxWi45mcv79MUbHVrYA1XK%2BeAKvgo45fGbS2%2B68GnXROF6ipw%3D%3D&numOfRows=10&pageNo=1&base_date=20210628&base_time=0500&nx=55&ny=127
+//사용할 기상청 날씨예보 api
