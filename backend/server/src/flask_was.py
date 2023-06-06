@@ -1,18 +1,47 @@
-from flask import Flask
+# -*- encoding:utf-8-*-
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+from config.conf import mysqlConf
+from flask import Flask, make_response
 from flask_restx import Api, Resource
 from flaskext.mysql import MySQL
 from flask_restx import reqparse
-
+import Modules.wthr_to_db as wd
+import json
+import pymysql
 
 app = Flask(__name__)
 api = Api(app)
 
+app.config['JSON_AS_ASCII'] = False
+
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'opensourcedb'
-app.config['MYSQL_DATABASE_PASSWORD'] = '1q2w3e'
-app.config['MYSQL_DATABASE_DB'] = 'open_source_DB'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_USER'] = mysqlConf['user']
+app.config['MYSQL_DATABASE_PASSWORD'] = mysqlConf['passwd']
+app.config['MYSQL_DATABASE_DB'] = mysqlConf['db']
+app.config['MYSQL_DATABASE_HOST'] = mysqlConf['host']
+app.config['MYSQL_DATABASE_CHARACTER_SET'] = 'UTF-8'
 mysql.init_app(app)
+
+conn = mysql.connect()
+
+wd.start_wthr_to_db()
+
+
+@api.route("/TourSpot")
+class SendTourSpotData(Resource):
+     def get(self):
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        table = "SELECT * FROM TourSpot"
+        cursor.execute(table)
+        data = cursor.fetchall()
+        data = json.dumps(data, ensure_ascii=False)
+        data = make_response(data)
+        return data
+        
+        
+
 
 
 class CreateUser(Resource):
@@ -26,7 +55,7 @@ class CreateUser(Resource):
             _userEmail = args['email']
             _userName = args['username']
             _userPassword = args['password']
-            conn = mysql.connect()
+            
             cursor = conn.cursor()
             cursor.callproc('sp_create_user', (_userEmail, _userName, _userPassword))
             data = cursor.fetchall()
@@ -38,14 +67,6 @@ class CreateUser(Resource):
                 return {'StatusCode': '1000', 'Message': str(data[0])}
 
 api.add_resource(CreateUser, '/user')
-
-@app.route("/")
-def hello():
-    return "Hello World!"
-
-@app.route("/meet")
-def meet():
-    return "Nice to meet you!"
-
+ 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
