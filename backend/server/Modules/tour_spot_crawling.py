@@ -10,91 +10,102 @@ from bs4 import BeautifulSoup #브라우저 태그를 가져오고 파싱하기 
 from selenium.common.exceptions import NoSuchElementException,StaleElementReferenceException,TimeoutException #예외처리를 위한 예외들 
 import time
 
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+from config.conf import service_key
+from Modules.connDB import alchemy
+
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
-
 # linux 환경에서 필요한 option
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
 
+
 ChromeDriverManager().install()
-driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver",chrome_options=chrome_options)
+driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver",
+                          chrome_options=chrome_options)
 driver.get("https://www.google.com/maps/")
 time.sleep(2)
-try:
-   element = WebDriverWait(driver, 10).until(
-      EC.presence_of_element_located((By.ID, "searchbox"))) #입력창이 뜰 때까지 대기
-finally:
-   pass
 
-search_box = driver.find_element(By.ID,"searchboxinput")
-search_box.send_keys("청주 꽃놀이")
-search_box.send_keys(Keys.ENTER)
-...
-#검색 결과에 따른 행동
-...
-#driver.find_element(By.XPATH,'//*[@id="searchbox"]/div[3]/button').send_keys(Keys.ENTER)
-
-#검색 결과로 나타나는 scroll-bar 포함한 div 잡고 스크롤 내리기
-a = WebDriverWait(driver, 10).until(
-    EC.visibility_of_element_located((By.XPATH, 
-                        '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')))
-scroll_div = driver.find_element(By.XPATH,
-            '/html/body/div[3]/div[9]/div[9]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
-driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
-time.sleep(1)
-driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
-time.sleep(1)
-driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
-time.sleep(1)
-driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
-
-#driver.execute_script("arguments[0].scrollIntoView(true);", scroll_div)
-#time.sleep(1)
-
-#name = driver.find_elements_by_class_name("NrDZNb")
-#한 칸 전체 데이터 가져오기
-elements = driver.find_elements(By.CLASS_NAME,'hfpxzc')
-
-href=[]
-image_link=[]
-spot_name=[]
-spot_adress=[]
-
-for i in elements:
-    href.append(i.get_attribute('href'))
-
-for i in href:
-    driver.get(i)
-    try:   
-        time.sleep(1) 
-        image = driver.find_element(By.XPATH,
-            '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[1]/div[1]/button/img')
-        image_link.append(image.get_attribute('src'))
-    except NoSuchElementException:
-        time.sleep(2)
-        image = driver.find_element(By.XPATH,
-            '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[1]/div[1]/div/img')
-        image_link.append(image.get_attribute('src'))
-    time.sleep(1)
-    try:    
-        name = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((
-            By.CSS_SELECTOR,'.DUwDvf.fontHeadlineLarge')))
-    
-        name = driver.find_element(By.CSS_SELECTOR,'.DUwDvf.fontHeadlineLarge')
-        spot_name.append(name.text)
-    except TimeoutException:
-        spot_name.append(None)
+def SearchSetup():    
     try:
-        adress = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((
-            By.CSS_SELECTOR,'.rogA2c')))        
-        adress = driver.find_element(By.CSS_SELECTOR,'.rogA2c')
-        spot_adress.append(adress.text)
+        element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "searchbox"))) #입력창이 뜰 때까지 대기
+    finally:
+        pass
+    
+    
+def SearchInput(list):
+    search_box = driver.find_element(By.ID,"searchboxinput")
+    search_box.send_keys("청주 " + list)
+    search_box.send_keys(Keys.ENTER)
+
+def SearchOutput():
+    #검색 결과로 나타나는 scroll-bar 포함한 div 잡고 스크롤 내리기
+    a = WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located((By.XPATH, 
+        '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]')))
+    scroll_div = driver.find_element(By.XPATH,
+                '/html/body/div[3]/div[9]/div[9]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div[1]')
+    driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
+    time.sleep(1)
+    driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
+    time.sleep(1)
+    driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
+    time.sleep(1)
+    driver.execute_script("arguments[0].scrollBy(0,2000)", scroll_div)
+
+    #한 칸 전체 데이터 가져오기
+    elements = driver.find_elements(By.CLASS_NAME,'hfpxzc')
+    return elements
+
+def CrawlingOutput(elements,list):
+    href=[]
+    image_link=[]
+    spot_name=[]
+    spot_adress=[]
+    activity=[]
+
+    for i in elements:
+        href.append(i.get_attribute('href'))
+
+    for i in href:
+        driver.get(i)
+        try:   
+            time.sleep(1) 
+            image = driver.find_element(By.XPATH,
+                    '//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[1]/div[1]/button/img')
+            image_link.append(image.get_attribute('src'))
+        except NoSuchElementException:
+            #time.sleep(2)
+            #image = driver.find_element(By.XPATH,
+                    #'//*[@id="QA0Szd"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[1]/div[1]/div/img')
+            #image_link.append(image.get_attribute('src'))
+            image_link.append(None)
         time.sleep(1)
-    except TimeoutException:
-        spot_adress.append(None)
+        try:    
+            name = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((
+                                            By.CSS_SELECTOR,'.DUwDvf.fontHeadlineLarge')))
 
-df = pd.DataFrame({'name':spot_name,'adress':spot_adress,'context':None,'imageadress':image_link})
-print(df)
+            name = driver.find_element(By.CSS_SELECTOR,'.DUwDvf.fontHeadlineLarge')
+            spot_name.append(name.text)
+        except TimeoutException:
+            spot_name.append(None)
+        try:
+            adress = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((
+                                                                By.CSS_SELECTOR,'.rogA2c')))        
+            adress = driver.find_element(By.CSS_SELECTOR,'.rogA2c')
+            spot_adress.append(adress.text)
+            time.sleep(1)
+        except TimeoutException:
+            spot_adress.append(None)
+        activity.append(list)
 
+    df = pd.DataFrame({'name':spot_name,'adress':spot_adress,'context':None,
+                       'imageadress':image_link,'activity':activity})
+    return df
+
+#df.to_sql(name="TourSpot",con=alchemy.conn, if_exists='append',index=False)
 
