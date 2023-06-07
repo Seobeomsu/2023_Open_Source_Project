@@ -11,7 +11,7 @@ passwd=mysqlConf['passwd']
 db=mysqlConf['db']
 
 class alchemy:
-    db_connection_str = 'mysql+pymysql://{0}:{1}@{2}/{3}'.format(user,passwd,host,db)
+    db_connection_str = 'mysql+pymysql://{0}:{1}@{2}/{3}?charset=utf8'.format(user,passwd,host,db)
     db_connection = create_engine(db_connection_str)
     conn = db_connection.connect()
 
