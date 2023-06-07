@@ -2,11 +2,12 @@ import requests
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 from config.conf import service_key
 from Modules.connDB import alchemy
 import json
 import pandas as pd
-path = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+#path = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 
 class ASOS:
     def __init__(self, date, stnId):
@@ -24,11 +25,11 @@ class ASOS:
         response.encoding = 'UTF-8'
         html = response.content
         data = json.loads(html)
-        print(data)
         data = data['response']['body']['items']['item']
         df = pd.json_normalize(data)
         df['sumRn'] = df['sumRn'].replace(r'^\s*$', 0, regex=True)
         df = df[['stnId','tm','minTa','avgTa','maxTa','sumRn','avgWs','avgRhm','avgTd','avgPa']]
         #df.info()
         #df.to_csv([f"{path}/tmp_asos.csv"])
+        print(df.head(5))
         df.to_sql(name="SURFACE_ASOS_131_DAY",con=alchemy.conn, if_exists='append',index=False)
