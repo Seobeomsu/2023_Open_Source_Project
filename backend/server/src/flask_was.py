@@ -3,7 +3,7 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from config.conf import mysqlConf
-from flask import Flask, make_response
+from flask import Flask, request
 from flask_restx import Api, Resource
 from flaskext.mysql import MySQL
 from flask_restx import reqparse
@@ -31,42 +31,23 @@ wd.start_wthr_to_db()
 
 @api.route("/TourSpot")
 class SendTourSpotData(Resource):
-     def get(self):
+     def post(self):
+
+        params = request.get_json()
+        _id = params['_id']
+        activity = params['activity']        
+
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        table = "SELECT * FROM TourSpot"
+        table = f"SELECT * FROM TourSpot WHERE `_id` = {_id} AND `activity` = {activity}"
         cursor.execute(table)
         data = cursor.fetchall()
-        data = json.dumps(data, ensure_ascii=False)
-        data = make_response(data)
-        return data
+
+        if len(data) == 0:
+            return {'StatusCode':'400', 'message':'you request wrong id or activity code'}
+        else:
+            return {'StatusCode':'200', 'data':data}
         
         
-
-
-
-class CreateUser(Resource):
-    def post(self):
-            parser = reqparse.RequestParser()
-            parser.add_argument('email', type=str)
-            parser.add_argument('username', type=str)
-            parser.add_argument('password', type=str)
-            args = parser.parse_args()
- 
-            _userEmail = args['email']
-            _userName = args['username']
-            _userPassword = args['password']
-            
-            cursor = conn.cursor()
-            cursor.callproc('sp_create_user', (_userEmail, _userName, _userPassword))
-            data = cursor.fetchall()
- 
-            if len(data) is 0:
-                conn.commit()
-                return {'StatusCode': '200', 'Message': 'User creation success'}
-            else:
-                return {'StatusCode': '1000', 'Message': str(data[0])}
-
-api.add_resource(CreateUser, '/user')
  
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=False, use_reloader=False)
