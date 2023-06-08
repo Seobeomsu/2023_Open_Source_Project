@@ -2,13 +2,14 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+
 from config.conf import mysqlConf
 from flask import Flask, request
 from flask_restx import Api, Resource
 from flaskext.mysql import MySQL
 from flask_restx import reqparse
 import Modules.wthr_to_db as wd
-import json
+import time
 import pymysql
 
 app = Flask(__name__)
@@ -16,6 +17,7 @@ api = Api(app)
 
 app.config['JSON_AS_ASCII'] = False
 
+#mysql DB 연결 설정
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = mysqlConf['user']
 app.config['MYSQL_DATABASE_PASSWORD'] = mysqlConf['passwd']
@@ -24,21 +26,23 @@ app.config['MYSQL_DATABASE_HOST'] = mysqlConf['host']
 app.config['MYSQL_DATABASE_CHARACTER_SET'] = 'UTF-8'
 mysql.init_app(app)
 
-conn = mysql.connect()
+conn = mysql.connect() #mysql DB에 연결
 
-wd.start_wthr_to_db()
+wd.start_wthr_to_db() #scheduler 실행
 
 
 @api.route("/TourSpot")
 class SendTourSpotData(Resource):
      def post(self):
 
+        #조건 요청 받기 (json type)
         params = request.get_json()
-        _id = params['_id']
+        stnId = params['stnId']
         activity = params['activity']        
 
+        #조건에 맞는 데이터 전송 (json type)
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        table = f"SELECT * FROM TourSpot WHERE `_id` = {_id} AND `activity` = {activity}"
+        table = f"SELECT * FROM TourSpot WHERE `stnId` = {stnId} AND `activity` = {activity}"
         cursor.execute(table)
         data = cursor.fetchall()
 
