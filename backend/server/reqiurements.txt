@@ -1,0 +1,13 @@
+apscheduler
+beautifulsoup4
+flask
+flask-mysql
+flask-restx
+numpy
+pandas
+pymysql
+requests
+selenium
+sqlalchemy
+tensorflow
+uwsgi
