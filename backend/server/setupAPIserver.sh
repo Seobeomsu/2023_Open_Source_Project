@@ -13,6 +13,9 @@ CreateDIR=/var/www/uwsgi
 
 sudo mkdir $CreateDIR
 
+sudo systemctl start mysql
+sudo systemctl enable mysql
+
 python3 ./server/src/set_up_mysql.py
 
 python3 ./server/src/create_mysql_db.py
@@ -26,3 +29,5 @@ sudo cp server/share/nginx/default /etc/nginx/sites-available
 
 sudo uwsgi --ini server/uwsgi_flask_was.ini
 echo "API 서버 실행"
+
+sudo service nginx reload
