@@ -132,6 +132,7 @@ def CrawlingOutput(elements,list):
                        'imageaddress':image_link,'activity':activity})
     return df
 
+print('관광지 데이터 크롤링 시작')
 
 SearchSetup()
 list=['꽃놀이','물놀이','캠핑','피크닉','별관측']
@@ -142,5 +143,6 @@ for i in list:
     data = pd.concat([data,CrawlingOutput(SearchOutput(),i)])
 data=data.dropna() #pd.NA로 저장된 행 삭제
 data.to_sql(name="TourSpot",con=alchemy.conn, if_exists='append',index=False) #mysql DB에 데이터 저장
+print('크롤링 종료, TourSpot에 데이터 저장 완료\n' + data.head(5))
 
 
