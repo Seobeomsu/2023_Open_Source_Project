@@ -6,6 +6,18 @@ from Modules.connDB import mysql
 from config.conf import mysqlConf
 import time
 
+os.system('sudo mysql -u root -p')
+os.system('\n')
+os.system(f"create database {mysqlConf['db']} default character set utf8;")
+os.system(f"create user '{mysqlConf['user']}'@'{mysqlConf['host']}' identified by '{mysqlConf['passwd']}';")
+os.system(f"grant all privileges on *.* to '{mysqlConf['user']}'@'{mysqlConf['host']}';")
+os.system('exit')
+os.system('sudo cp ./server/DB/SURFACE_ASOS_131_DAY_2012_2022.csv /var/lib/mysql')
+
+print('MYSQL 사용자 생성완료')
+
+time.sleep(5)
+
 cur = mysql.conn.cursor()
 
 asos = f'''
@@ -50,6 +62,14 @@ sql = '''
 list = [asos,tourspot,sql]
 
 for i in list:
+    if i==sql:
+        print('SURFACE_ASOS_131_DAY_2000_2022.csv 저장 시작')
     cur.execute(i)
     mysql.conn.commit()
+    if i==asos:
+        print('SURFACE_ASOS_131_DAY 테이블 생성완료')
+    elif i==tourspot:
+        print('TourSpot 테이블 생성완료')
+    else: 
+        print('SURFACE_ASOS_131_DAY에 데이터저장 완료')
     time.sleep(5)
