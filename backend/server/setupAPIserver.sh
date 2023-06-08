@@ -13,6 +13,8 @@ CreateDIR=/var/www/uwsgi
 
 sudo mkdir $CreateDIR
 
+sudo chmod -R 755 /var/run/mysql
+
 sudo systemctl start mysql
 sudo systemctl enable mysql
 
