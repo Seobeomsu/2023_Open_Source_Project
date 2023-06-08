@@ -42,11 +42,13 @@ def get_midterm_forecast(reg_id):
     return None
 
 # 별 관측하기 좋은 날짜 추천 함수
+# 별 관측하기 좋은 날짜 추천 함수
 def recommend_observation_dates(reg_id):
     forecast_data = get_midterm_forecast(reg_id)
     if forecast_data:
         items = forecast_data["response"]["body"]["items"]["item"]
 
+        result = []
         for item in items:
             weather_data = {
                 "temperature": float(item["ta"]),
@@ -54,7 +56,11 @@ def recommend_observation_dates(reg_id):
             }
             score = calculate_weather_score(weather_data)
             date = item["tmFc"][:8]  # 날짜 정보만 추출
-            print(f"{date}: Score {score}")
+            result.append({"date": date, "score": score})
+
+        return result
+
+    return None
 
     else:
         print("중기예보 데이터를 가져오지 못했습니다.")
