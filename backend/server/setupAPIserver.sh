@@ -13,6 +13,8 @@ CreateDIR=/var/www/uwsgi
 
 sudo mkdir $CreateDIR
 
+python3 ./server/src/set_up_mysql.py
+
 python3 ./server/src/create_mysql_db.py
 
 python3 ./sever/src/tour_spot_crawling.py
