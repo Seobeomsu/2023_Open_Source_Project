@@ -23,5 +23,5 @@ def getWthrData():
 def start_wthr_to_db():    
     schedule = BackgroundScheduler(daemon=True, timezone='Asia/Seoul')
     schedule.add_job(test, 'interval', minutes=31, id='test')
-    schedule.add_job(getWthrData, 'cron', hour='9',id='data')
+    schedule.add_job(getWthrData, 'cron', hour='9')
     schedule.start()
