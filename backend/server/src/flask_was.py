@@ -7,14 +7,13 @@ from config.conf import mysqlConf
 from flask import Flask, request
 from flask_restx import Api, Resource
 from flaskext.mysql import MySQL
-from flask_restx import reqparse
+from flask_cors import CORS
 import Modules.wthr_to_db as wd
-import time
 import pymysql
 
 app = Flask(__name__)
 api = Api(app)
-
+cors = CORS(app)
 app.config['JSON_AS_ASCII'] = False
 
 #mysql DB 연결 설정
@@ -26,7 +25,7 @@ app.config['MYSQL_DATABASE_HOST'] = mysqlConf['host']
 app.config['MYSQL_DATABASE_CHARACTER_SET'] = 'UTF-8'
 mysql.init_app(app)
 
-conn = mysql.connect() #mysql DB에 연결
+
 
 wd.start_wthr_to_db() #scheduler 실행
 
@@ -34,18 +33,22 @@ wd.start_wthr_to_db() #scheduler 실행
 @api.route("/TourSpot")
 class SendTourSpotData(Resource):
      def post(self):
+        conn = mysql.connect() #mysql DB에 연결
 
-        #조건 요청 받기 (json type)
-        params = request.get_json()
-        stnId = params['stnId']
-        activity = params['activity']        
+        try:
+            #조건 요청 받기 (json type)
+            params = request.get_json()
+            stnId = params['stnId']
+            activity = params['activity']        
 
         #조건에 맞는 데이터 전송 (json type)
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
-        table = f"SELECT * FROM TourSpot WHERE `stnId` = {stnId} AND `activity` = {activity}"
-        cursor.execute(table)
-        data = cursor.fetchall()
-
+            with conn.cursor(pymysql.cursors.DictCursor) as cursor:
+                table = f"SELECT * FROM TourSpot WHERE `stnId` = {stnId} AND `activity` = {activity}"
+                cursor.execute(table)
+                data = cursor.fetchall()
+        finally: 
+            conn.close()
+            
         if len(data) == 0:
             return {'StatusCode':'400', 'message':'you request wrong id or activity code'}
         else:
