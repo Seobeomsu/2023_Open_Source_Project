@@ -15,8 +15,6 @@ sudo mkdir $CreateDIR
 
 sudo chmod -R 755 /var/run/mysql
 
-sudo systemctl start mysql
-sudo systemctl enable mysql
 
 python3 ./server/src/set_up_mysql.py
 
