@@ -13,4 +13,3 @@ sqlalchemy
 tensorflow
 uwsgi
 
-sudo apt install uwsgi-plugin-python3
