@@ -43,14 +43,14 @@ const VARIS = {
   `
 };
 
-function Button({disabled, size, vari, context}) {
+function Button({disabled, size, vari, context, code}) {
   const { setactivity } = useStore()
 
   const sizeStyle = SIZES[size];
   const variStyle = VARIS[vari];
 
   function buttonClick(){
-    setactivity(context);
+    setactivity(code);
   }
 
   return (
