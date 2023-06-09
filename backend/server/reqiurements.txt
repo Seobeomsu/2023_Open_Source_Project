@@ -3,6 +3,7 @@ beautifulsoup4
 flask
 flask-mysql
 flask-restx
+flask-cors
 numpy
 pandas
 pymysql
