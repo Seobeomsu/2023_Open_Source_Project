@@ -3,9 +3,9 @@ import PlaceBox from '../components/PlaceBox'
 import WeatherBox from '../components/WeatherBox'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import axios from 'axios';
+import GoodDayStore from '../components/GoodDayStore'
 
-const URL = "http://54.180.194.206:8000/TourSpot";
+//const { placedata , weatherdata } = GoodDayStore()
 
 const weatherdata = [ // 총 10개
   { date : "5.31", weather : "good", hightempature : "45", lowtempature : "-45" , state : "bad"},
@@ -78,6 +78,7 @@ return (
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
       > 
+      <div>
         <WeatherWrap>
           {weatherdata.map((item)=>(
             <WeatherBox
@@ -90,6 +91,7 @@ return (
             />
           ))}
         </WeatherWrap>
+        </div>
       </motion.div>
     </Wrap>
   )
