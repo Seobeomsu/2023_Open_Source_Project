@@ -3,6 +3,9 @@ import PlaceBox from '../components/PlaceBox'
 import WeatherBox from '../components/WeatherBox'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import axios from 'axios';
+
+const URL = "http://54.180.194.206:8000/TourSpot";
 
 const weatherdata = [ // 총 10개
   { date : "5.31", weather : "good", hightempature : "45", lowtempature : "-45" , state : "bad"},
@@ -18,7 +21,10 @@ const weatherdata = [ // 총 10개
 ]
 
 const placedata = [ // 총 3개
-  { name : "SkyTree", address : "고색동" , context : "뭐하는거야" , imageaddress : "/asdfsaf"},
+  { name: "고릴라캠핑청주점",
+    address: "충청북도 청주시 서원구 남이면 수대리 233-1",
+    context: "매장 내 쇼핑",
+    imageaddress: "https://lh5.googleusercontent.com/p/AF1QipNwF-Gd6UowdqIpHEepMkw7WtTM2PkR4ZdtNWt2=w408-h862-k-no",},
   { name : "누난내여자니까", address : "비전이동" , context : "응애", imageaddress : "/asdfsaf"},
   { name : "양성재", address : "420호" , context : "420호의 불은 꺼지지않는다", imageaddress : "/asdfsaf"},
 ]
@@ -47,6 +53,7 @@ const PlaceWrap = styled.div`
 `
 
 export default function GoodDay() {
+
 return (
     <Wrap>
       <motion.div
@@ -69,7 +76,7 @@ return (
       <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{duration: 2,}}
+      transition={{ duration: 2 }}
       > 
         <WeatherWrap>
           {weatherdata.map((item)=>(
