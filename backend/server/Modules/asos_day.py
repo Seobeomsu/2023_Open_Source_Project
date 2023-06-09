@@ -42,5 +42,6 @@ class ASOS:
 
         try:
             df.to_sql(name="SURFACE_ASOS_131_DAY",con=alchemy.conn, if_exists='append',index=False)
+            alchemy.conn.close()
         except:
             alchemy.conn.rollback()
