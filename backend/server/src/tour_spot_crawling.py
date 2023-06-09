@@ -142,7 +142,8 @@ for i in list:
     SearchInput(i)
     data = pd.concat([data,CrawlingOutput(SearchOutput(),i)])
 data=data.dropna() #pd.NA로 저장된 행 삭제
-data.to_sql(name="TourSpot",con=alchemy.conn, if_exists='append',index=False) #mysql DB에 데이터 저장
+data.to_sql(name="TourSpot",con=alchemy.conn, if_exists='append',index=False)
+alchemy.conn.close() #mysql DB에 데이터 저장
 print('크롤링 종료, TourSpot에 데이터 저장 완료\n' + data.head(5))
 
 
