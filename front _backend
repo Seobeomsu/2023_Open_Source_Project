@@ -92,6 +92,15 @@ def process_weather_data(weather_data):
     base_url = "http://apis.data.go.kr/1360000/MidFcstInfoService"
     endpoint = "/getMidLandFcst"
     url = base_url + endpoint
+    
+    params = {
+        "serviceKey": API_KEY,
+        "numOfRows": 10,
+        "pageNo": 1,
+        "dataType": "JSON",
+        "regId": reg_id,  # 지역 코드 (서울: 11B00000)
+        "tmFc": "202305171800"  # 기준 날짜와 시간 설정 (YYYYMMDDHHMM 형식)
+    }
 
   
     
