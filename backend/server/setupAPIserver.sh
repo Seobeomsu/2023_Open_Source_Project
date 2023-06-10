@@ -12,7 +12,7 @@ fi
 CreateDIR=/var/www/uwsgi
 
 sudo mkdir $CreateDIR
-
+sudo chmod -R 777 /var/www/uwsgi
 sudo chmod -R 755 /var/run/mysql
 sudo chmod 766 /etc/mysql/my.cnf
 
@@ -36,8 +36,10 @@ echo "MYSQL DB 생성완료"
 
 sudo rm /etc/nginx/sites-available/default
 sudo cp server/share/nginx/default /etc/nginx/sites-available
+
 uwsgi --stop server/uwsgi.pid
 uwsgi --ini server/uwsgi_flask_was.ini
+
 echo "API 서버 실행"
 
 sudo service nginx reload

@@ -16,24 +16,38 @@
 
 ### Project summary
 
-본 프로젝트는 2022-1학기 오픈소스기초프로젝트에서 시작된 프로젝트로 당일 
+본 프로젝트는 2023-1학기 오픈소스기초프로젝트에서 시작된 프로젝트로 간편한 여행계획에 필요한 여러 정보를 종합적으로 제공하기 위한 플랫폼이다.
 
 #### Purpose
 
-여행 계획을 세울때 여행지 정보 따로 날씨정보 따로 파편화 되어있음 따라서 불편함이 야기됨 여행지 정보와 날씨정보 모두 통합된 시스템 필요
+여행 계획을 세울때 여행지 정보 따로 날씨정보 따로 파편화 되어있어서 혹은 너무 많아서 불편함을 겪었던 경우가 있다. 만약 당일치기 여행이나 나들이 계획을 세운 다면 방대한 정보는 때론 방해가 되기도 한다.
+특히 갑자기 훌쩍 떠나고 싶을때 차안에서 스마트폰으로 주야장천 어딜 갈지 겁색하는 건 꽤나 궁상맞는 일일 것이다.
 
-교통 발달로 당일 치기 여행 잛은 여행 증가 복잡한 여행 계획 대신 간편한 여행계획의 필요성 대두 따라서 꼭 필요한 정보만이 필요함
-
-본 앱은 날씨 예측 기반 여행지 추천 및 정보 제공으로 그러한 니즈를 충족시킬 수 있다
+이에 우리는 여행지 정보와 날씨정보 모두 통합해 제공하는 시스템이 필요하다 여겼고 
+본 플랫폼은 날씨 예측 기반 여행지 추천 및 정보 제공으로 그러한 니즈를 충족시킬 수 있다.
 
 #### Requirements
 
+- Backend
 * requirements.txt 참고.
+* Nginx
+* MYSQL
+* uWSGI, Python3 plugin
+* Chrome
+
+- Frontend
+* React
 
 #### How to install
 
+* First git clone
 ```sh
 git clone ...........
+```
+
+- Backend install
+
+```sh
 cd 2023_Open_Source_Project/backend
 pip3 install -r server/requirements.txt
 ```
@@ -62,14 +76,36 @@ sudo apt-get install uwsgi-plugin-python3
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i ./google-chrome-stable_current_amd64.deb
 ```
+
+- Frontend install
+
+* install Librarys
+```sh
+cd 2023_Open_Source_Project/frontend
+npm install i
+```
+
 ---
 
 ### How to use
+
+- Backend server start
 
 ```sh
 cd 2023_Open_Source_Project/backend
 sudo sh server/setupAPIserver.sh
 ```
+
+- Frontend server start
+
+* Start React
+```sh
+npm run dev
+```
+
+* Open Page
+http://localhost:5173
+
 
 ---
 
@@ -81,7 +117,11 @@ sudo sh server/setupAPIserver.sh
 
 ### Contributor
 
-
+|Seobeomsu : 서범수|
+|---|
+|yangsua   : 양수아|
+|---|
+|AhnJewon  : 안제원|
 
 ---
 

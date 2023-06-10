@@ -62,7 +62,7 @@ server {
 		#fastcgi_pass unix:/run/php/php8.1-fpm.sock;
 	#	# With php-cgi (or other tcp sockets):
 	#	fastcgi_pass 127.0.0.1:9000;
-	}
+	#}
 
 	# deny access to .htaccess files, if Apache's document root
 	# concurs with nginx's one

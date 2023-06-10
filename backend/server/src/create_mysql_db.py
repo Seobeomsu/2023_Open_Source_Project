@@ -31,7 +31,7 @@ tourspot = f'''
                 context VARCHAR(1000) NOT NULL , 
                 imageaddress VARCHAR(5000) NOT NULL ,
                 activity VARCHAR(10) NOT NULL, 
-                PRIMARY KEY (name(100)) )
+                 )
             
             '''
 
