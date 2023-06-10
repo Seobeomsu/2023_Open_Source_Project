@@ -11,8 +11,8 @@ margin: auto;
 height: 900px;
 img{
   display: block;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   margin: auto;
   padding-top: 100px;
   padding-right: 50px;
@@ -24,7 +24,7 @@ const AppText = styled.div`
   font-size: 64px;
   font-family: 'Courier New', Courier, monospace;
   letter-spacing: 2px;
-  text-shadow: px 3px gray;
+  text-shadow: 3px 3px gray;
 `
 
 const TextWrap = styled.div`
@@ -35,6 +35,8 @@ const TextWrap = styled.div`
 const Text = styled.div`
   text-align: center;
   font-weight: 700;
+  font-size: 24px;
+  margin-top: 10px;
 `
 export default function Intro() {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,9 +47,9 @@ export default function Intro() {
     setIsVisible(true)
     const timer = setTimeout(() => {
       setIsVisible(false)
-      const timer2 = setTimeout(() => {
-        navigate("/home");
-      }, 2000);
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
     }, 2000);
     return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 해제
   }, [navigate]);
