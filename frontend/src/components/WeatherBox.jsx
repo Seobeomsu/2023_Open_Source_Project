@@ -33,12 +33,7 @@ const STATE = {
     --div-color: #ffffff;
   `
 }
-const LowT = styled.div`
-  color: #0000ff8e;
-`
-const HighT = styled.div`
-  color: #ff000094;
-`
+
 const Date = styled.div`
   font-size: 40px;
 `
@@ -50,10 +45,18 @@ const State = styled.div`
   width: 150px;
   font-size: 32px;
 `
-
 const Cloud = styled.div`
-   
+ margin-top : 10px;
 `
+const LowT = styled.div`
+  color: #0000ff8e;
+  margin-top: 10px;
+`
+const HighT = styled.div`
+  color: #ff000094;
+  margin-top: 10px;
+`
+
 
 export default function WeatherBox({date,weather,hightempature,lowtempature,state}) {
   const stateStyle = STATE[state];
