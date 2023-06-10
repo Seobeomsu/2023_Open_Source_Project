@@ -15,6 +15,8 @@ sudo mkdir $CreateDIR
 
 sudo chmod -R 755 /var/run/mysql
 
+echo sudo service nginx start
+echo sudo service mysql start
 
 python3 ./server/src/set_up_mysql.py
 
