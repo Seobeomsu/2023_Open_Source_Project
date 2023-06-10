@@ -9,8 +9,7 @@ import time
 cur = mysql.conn.cursor()
 
 asos = f'''
-        CREATE TABLE `{mysqlConf['db']}`.`SURFACE_ASOS_131_DAY`
-        ( 
+        CREATE TABLE `SURFACE_ASOS_131_DAY`( 
             `stnId` INT NULL DEFAULT NULL, 
             `tm` DATE NOT NULL, 
             `minTa` FLOAT NOT NULL, 
@@ -21,19 +20,18 @@ asos = f'''
             `avgTd` FLOAT NOT NULL, 
             `avgRhm` FLOAT NOT NULL, 
             `angPa` FLOAT NOT NULL
-            PRIMARY KEY (`tm`));
+            PRIMARY KEY (`tm`) ) ENGINE = InnoDB CHARSET=utf8;
         '''
 
 tourspot = f''' 
-            CREATE TABLE `{mysqlConf['db']}`.`TourSpot` 
-            ( 
+            CREATE TABLE `TourSpot`( 
                 `stnId` VARCHAR(100) NOT NULL ,
                 `name` VARCHAR(100) NOT NULL , 
                 `address` VARCHAR(1000) NOT NULL ,
                 `context` VARCHAR(1000) NOT NULL , 
                 `imageaddress` VARCHAR(5000) NOT NULL ,
                 `activity` VARCHAR(10) NOT NULL, 
-                PRIMARY KEY (`name`(100)));
+                PRIMARY KEY (`name`(100))) ENGINE = InnoDB CHARSET=utf8;
             
             '''
 
