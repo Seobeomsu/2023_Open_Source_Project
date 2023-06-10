@@ -44,7 +44,6 @@ export default function GoodDayButton() {
   const Navigate = useNavigate();
 
   function GoodDayConvert(){
-    console.log(activity,legioncode)
     if(!(activity==null) && !(legioncode==null)){
       setsize(3000);
       GetData();

@@ -53,7 +53,6 @@ function Button({disabled, size, vari, context, code}) {
     setactivity(code);
 
     localStorage.setItem('activity',code);
-    console.log(localStorage.getItem('activity'))
   }
 
   return (

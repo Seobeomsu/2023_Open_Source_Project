@@ -41,6 +41,7 @@ export default function Intro() {
   const navigate = useNavigate()
 
   useEffect(() => { // 3초후 페이지이동
+    console.log("Intro Rendering")
     setIsVisible(true)
     const timer = setTimeout(() => {
       setIsVisible(false)

@@ -9,15 +9,12 @@ const header = {
 
 export default function GetData(){
   var code = localStorage.getItem('activity');
-  console.log(code);
   var data = {
     stnId : '131' , activity : code
   }
-  console.log(data);
   axios.defaults.headers.post = null
   axios.post(URL, data ,{header}).then((response) => {
   localStorage.setItem('PlaceData', JSON.stringify(response.data.data));
-  const hi = JSON.parse(localStorage.getItem('PlaceData'));
-  console.log(hi[2].name);
+  console.log("Data Load Succes!");
   })
 }

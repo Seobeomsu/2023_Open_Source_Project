@@ -12,6 +12,9 @@ const Wrap = styled.div`
 `
 
 export default function Home() {
+  useEffect(()=>{
+    console.log("Home Rendering");
+  },[])
   return (
     <Wrap>
       <Map/>
