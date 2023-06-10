@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useStore from './HomeStore';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import GetData from './GetData';
 
 const Wrap = styled.div`
   div{
@@ -46,6 +47,7 @@ export default function GoodDayButton() {
     console.log(activity,legioncode)
     if(!(activity==null) && !(legioncode==null)){
       setsize(3000);
+      GetData();
       const timer = setTimeout(() => {
        Navigate("/GoodDay");
       }, 2000)
