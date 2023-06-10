@@ -12,11 +12,11 @@ const Wrap = styled.div`
 `
 
 const weatherdata = [ // 총 10개
-  { date : "5.31", weather : "good", hightempature : "45", lowtempature : "-45" , state : "bad"},
+  { date : "5.31", weather : "good", hightempature : "45", lowtempature : "-45" , state : "verygood"},
   { date : "6.1", weather : "good", hightempature : "45", lowtempature : "-45" , state : "good"},
-  { date : "6.2", weather : "good", hightempature : "45", lowtempature : "-45" , state : "verygood"},
-  { date : "6.3", weather : "good", hightempature : "45", lowtempature : "-45" , state : "good"},
-  { date : "6.4", weather : "good", hightempature : "45", lowtempature : "-45" , state : "good"},
+  { date : "6.2", weather : "good", hightempature : "45", lowtempature : "-45" , state : "notbad"},
+  { date : "6.3", weather : "good", hightempature : "45", lowtempature : "-45" , state : "bad"},
+  { date : "6.4", weather : "good", hightempature : "45", lowtempature : "-45" , state : "stayhome"},
   { date : "6.5", weather : "good", hightempature : "45", lowtempature : "-45" , state : "good"},
   { date : "6.6", weather : "good", hightempature : "45", lowtempature : "-45" , state : "good"},
   { date : "6.7", weather : "good", hightempature : "45", lowtempature : "-45" , state : "good"},
