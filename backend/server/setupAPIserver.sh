@@ -15,21 +15,21 @@ sudo mkdir $CreateDIR
 
 sudo chmod -R 755 /var/run/mysql
 
-echo sudo service nginx start
-echo sudo service mysql start
+sudo service nginx start
+sudo service mysql start
 
-python3 ./server/src/set_up_mysql.py
+python3 server/src/set_up_mysql.py
 
-python3 ./server/src/create_mysql_db.py
+python3 server/src/create_mysql_db.py
 
-python3 ./sever/src/tour_spot_crawling.py
+python3 sever/src/tour_spot_crawling.py
 
 echo "MYSQL DB 생성완료"
 
 sudo rm /etc/nginx/sites-available/default
 sudo cp server/share/nginx/default /etc/nginx/sites-available
-
-sudo uwsgi --ini server/uwsgi_flask_was.ini
+uwsgi --stop server/uwsgi.pid
+uwsgi --ini server/uwsgi_flask_was.ini
 echo "API 서버 실행"
 
 sudo service nginx reload
