@@ -53,11 +53,13 @@ for i in list:
         mysql.conn.close()
     if i==asos:
         cur = mysql.conn.cursor()
+        cur.execute(i)
         print('SURFACE_ASOS_131_DAY 테이블 생성완료')
         mysql.conn.commit()
                
     elif i==tourspot:
         cur = mysql.conn.cursor()
+        cur.execute(i)
         print('TourSpot 테이블 생성완료')
         mysql.conn.commit()
         
