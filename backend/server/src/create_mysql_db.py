@@ -21,7 +21,7 @@ asos = f'''
             `avgTd` FLOAT NOT NULL, 
             `avgRhm` FLOAT NOT NULL, 
             `angPa` FLOAT NOT NULL
-            PRIMARY KEY (tm));
+            PRIMARY KEY (`tm`));
         '''
 
 tourspot = f''' 
