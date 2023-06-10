@@ -37,9 +37,9 @@ const VARIS = {
   `,
   activity: css`
     --button-color: #252525;
-    --button-bg-color: #67af78;
-    --button-hover-bg-color: #e0a800;
-    --button-focus-bg-color: #dc3545;
+    --button-bg-color: #78dd8f;
+    --button-hover-bg-color: #ffe0a1;
+    --button-focus-bg-color: #ff7f8e;
   `
 };
 
@@ -51,6 +51,8 @@ function Button({disabled, size, vari, context, code}) {
 
   function buttonClick(){
     setactivity(code);
+
+    localStorage.setItem('activity',code);
   }
 
   return (

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useStore from './HomeStore';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import GetData from './GetData';
 
 const Wrap = styled.div`
   div{
@@ -24,15 +25,15 @@ const Button = styled.button`
   font-weight: bold;
   font-family: "Noto Sans KR", sans-serif;
   color: #252525;
-  background-color: #67af78;
+  background-color: #78dd8f;
   border: 0;
 
   &:hover{
-    background: #e0a800;
+    background: #ffe0a1;
     transition: 0.5s;
   }
   &:focus {
-    background-color: #dc3545;
+    background-color: #ff7f8e;
   }
   &:active{}
 `
@@ -43,9 +44,9 @@ export default function GoodDayButton() {
   const Navigate = useNavigate();
 
   function GoodDayConvert(){
-    console.log(activity,legioncode)
     if(!(activity==null) && !(legioncode==null)){
       setsize(3000);
+      GetData();
       const timer = setTimeout(() => {
        Navigate("/GoodDay");
       }, 2000)

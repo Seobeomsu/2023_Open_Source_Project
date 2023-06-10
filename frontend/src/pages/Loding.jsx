@@ -3,7 +3,6 @@ import axios from 'axios'
 import useStore from '../components/HomeStore'
 import GoodDayStore from '../components/GoodDayStore'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 
 const Wrap = styled.div`
   height: 900px;
@@ -21,16 +20,26 @@ const header = {
 }
 
 export default function Loding(){
-  const { activity, legioncode } = useStore()
-  const { SetPlaceData , SetWeatherData } = GoodDayStore()
-  axios.defaults.headers.post = null
-
+  const { activity, legioncode, setactivity} = useStore()
+  const { placedata, SetPlaceData , SetWeatherData } = GoodDayStore()
   useEffect(()=>{
-    axios.post(URL,{ stnId : "131", activity : activity },{header}).then((response) => {
+    var code = localStorage.getItem('activity');
+    console.log(code);
+    var data = {
+      stnId : '131' , activity : code
+    }
+    console.log(data);
+    axios.defaults.headers.post = null
+    axios.post(URL, data ,{header}).then((response) => {
       console.log(response.data.data);
-      SetPlaceData(response.data.data).then(console.log("hi")/*useNavigate("/GoodDay")*/);
+      SetPlaceData(response.data.data)
+      
+      localStorage.setItem('PlaceData', JSON.stringify(response.data.data));
+      const hi = JSON.parse(localStorage.getItem('PlaceData'));
+      console.log(hi[2].name);
     })
   },[])
+
   //axios.post(URL, { legioncode : legioncode },{header}).then((response)=>{
   //  console.log(response.data.data);
   //  SetWeatherData(response.data.data);
