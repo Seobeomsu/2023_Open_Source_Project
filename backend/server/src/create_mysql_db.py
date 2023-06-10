@@ -21,7 +21,7 @@ asos = f'''
             `avgTd` FLOAT NOT NULL, 
             `avgRhm` FLOAT NOT NULL, 
             `angPa` FLOAT NOT NULL
-            PRIMARY KEY (tm)) ENGINE = InnoDB;
+            PRIMARY KEY (tm));
         '''
 
 tourspot = f''' 
@@ -33,7 +33,7 @@ tourspot = f'''
                 `context` VARCHAR(1000) NOT NULL , 
                 `imageaddress` VARCHAR(5000) NOT NULL ,
                 `activity` VARCHAR(10) NOT NULL, 
-                PRIMARY KEY (`name`(100))) ENGINE = InnoDB;
+                PRIMARY KEY (`name`(100)));
             
             '''
 
