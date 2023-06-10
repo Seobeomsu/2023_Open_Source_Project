@@ -3,7 +3,6 @@ import axios from 'axios'
 import useStore from '../components/HomeStore'
 import GoodDayStore from '../components/GoodDayStore'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 
 const Wrap = styled.div`
   height: 900px;

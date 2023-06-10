@@ -21,14 +21,11 @@ const Wrap = styled.div`
   }
   .slick-list{ //얘로 크기조정 했음
     display: block;
-    left: 0px;
+    left: -350px;
     width: 700px;
     height: 350px;
     margin: 0 auto;
     overflow: visible;
-  }
-  .slick-slide{
-    //width: 350px !important;
   }
   .slick-arrow{
     font-size: 40px
@@ -43,8 +40,6 @@ const Wrap = styled.div`
         -webkit-font-smoothing: antialiased;
     }
 `
-
-
 
 export default function PlaceWrap() {
   const PlaceData = JSON.parse(localStorage.getItem('PlaceData')); // 데이터 로드
