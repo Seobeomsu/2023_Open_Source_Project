@@ -50,7 +50,6 @@ for i in list:
         cur = mysql.conn.cursor()
         print('SURFACE_ASOS_131_DAY_2000_2022.csv 저장 시작')
         cur.execute(i)
-        mysql.conn.commit()
         mysql.conn.close()
     if i==asos:
         cur = mysql.conn.cursor()
