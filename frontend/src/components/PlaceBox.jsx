@@ -44,7 +44,6 @@ const Context = styled.div`
   text-align: center;
   white-space: pre-wrap;
   word-break: break-all;
-
 `
 
 export default function PlaceBox({name,address,context,imgaddress}) {
