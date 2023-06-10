@@ -6,32 +6,32 @@ from Modules.connDB import mysql
 from config.conf import mysqlConf
 import time
 
-cur = mysql.conn.cursor()
+
 
 asos = f'''
-        CREATE TABLE `SURFACE_ASOS_131_DAY`( 
-            `stnId` INT NULL DEFAULT NULL, 
-            `tm` DATE NOT NULL, 
-            `minTa` FLOAT NOT NULL, 
-            `avgTa` FLOAT NOT NULL, 
-            `maxTa` FLOAT NOT NULL, 
-            `sumRn` FLOAT NULL, 
-            `avgWs` FLOAT NOT NULL, 
-            `avgTd` FLOAT NOT NULL, 
-            `avgRhm` FLOAT NOT NULL, 
-            `angPa` FLOAT NOT NULL
-            PRIMARY KEY (`tm`) )
+        CREATE TABLE SURFACE_ASOS_131_DAY( 
+            stnId INT NULL DEFAULT NULL, 
+            tm DATE NOT NULL, 
+            minTa FLOAT NOT NULL, 
+            avgTa FLOAT NOT NULL, 
+            maxTa FLOAT NOT NULL, 
+            sumRn FLOAT NULL, 
+            avgWs FLOAT NOT NULL, 
+            avgTd FLOAT NOT NULL, 
+            avgRhm FLOAT NOT NULL, 
+            angPa FLOAT NOT NULL
+            PRIMARY KEY (tm) )
         '''
 
 tourspot = f''' 
-            CREATE TABLE `TourSpot`( 
-                `stnId` VARCHAR(100) NOT NULL ,
-                `name` VARCHAR(100) NOT NULL , 
-                `address` VARCHAR(1000) NOT NULL ,
-                `context` VARCHAR(1000) NOT NULL , 
-                `imageaddress` VARCHAR(5000) NOT NULL ,
-                `activity` VARCHAR(10) NOT NULL, 
-                PRIMARY KEY (`name`(100)) )
+            CREATE TABLE TourSpot( 
+                stnId VARCHAR(100) NOT NULL ,
+                name VARCHAR(100) NOT NULL , 
+                address VARCHAR(1000) NOT NULL ,
+                context VARCHAR(1000) NOT NULL , 
+                imageaddress VARCHAR(5000) NOT NULL ,
+                activity VARCHAR(10) NOT NULL, 
+                PRIMARY KEY (name(100)) )
             
             '''
 
@@ -46,14 +46,22 @@ sql = '''
 list = [asos,tourspot,sql]
 
 for i in list:
-    if i==asos:
-        print('SURFACE_ASOS_131_DAY_2000_2022.csv 저장 시작')
-    cur.execute(i)
-    mysql.conn.commit()
     if i==sql:
+        cur = mysql.conn.cursor()
+        print('SURFACE_ASOS_131_DAY_2000_2022.csv 저장 시작')
+        cur.execute(i)
+        mysql.conn.commit()
+        mysql.conn.close()
+    if i==asos:
+        cur = mysql.conn.cursor()
         print('SURFACE_ASOS_131_DAY 테이블 생성완료')
+        mysql.conn.commit()
+        mysql.conn.close()        
     elif i==tourspot:
+        cur = mysql.conn.cursor()
         print('TourSpot 테이블 생성완료')
+        mysql.conn.commit()
+        mysql.conn.close()
     else: 
         print('SURFACE_ASOS_131_DAY에 데이터저장 완료')
     time.sleep(5)
