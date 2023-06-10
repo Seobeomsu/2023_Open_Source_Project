@@ -43,8 +43,8 @@ class SendTourSpotData(Resource):
 
         #조건에 맞는 데이터 전송 (json type)
             with conn.cursor(pymysql.cursors.DictCursor) as cursor:
-                table = f"SELECT * FROM TourSpot WHERE `stnId` = {stnId} AND `activity` = {activity}"
-                cursor.execute(table)
+                table = f"SELECT * FROM TourSpot WHERE `stnId`=%s AND `activity`=%s"
+                cursor.execute(table, (stnId, activity))
                 data = cursor.fetchall()
         finally: 
             conn.close()
