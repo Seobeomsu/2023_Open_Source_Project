@@ -1,5 +1,6 @@
 import http.server
-import requests
+import request
+import json
 
 
 API_KEY = "Cy2hhB4CjnW9YfGUIRuM8eJD2ywoJH1SBWFqYHxWi45mcv79MUbHVrYA1XK%2BeAKvgo45fGbS2%2B68GnXROF6ipw%3D%3D"
@@ -70,6 +71,25 @@ def process_weather_data(weather_data):
     httpd = http.server.HTTPServer(server_address, MyRequestHandler)
     print("Server running on port 8000...")
     httpd.serve_forever()
+    
+    run server()
+    
+    def calculate_weather_score(weather_data):
+    # 기상환경 점수 계산 로직 구현
+    temperature = weather_data["temperature"]
+    precipitation = weather_data["precipitation"]
+
+    score = 0
+    if temperature >= 15 and temperature <= 25:
+        score += 50
+    if precipitation <= 0.5:
+        score += 50
+
+    return score
+    
+    
+    
+    
     
     
 
