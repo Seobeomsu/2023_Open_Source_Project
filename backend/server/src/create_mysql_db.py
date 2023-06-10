@@ -15,7 +15,7 @@ asos = f'''
             minTa FLOAT NOT NULL, 
             avgTa FLOAT NOT NULL, 
             maxTa FLOAT NOT NULL, 
-            sumRn FLOAT NULL, 
+            sumRn FLOAT NOT NULL, 
             avgWs FLOAT NOT NULL, 
             avgTd FLOAT NOT NULL, 
             avgRhm FLOAT NOT NULL, 
@@ -46,22 +46,25 @@ sql = '''
 list = [asos,tourspot,sql]
 
 for i in list:
+    cur = mysql.conn.cursor()
     if i==sql:
-        cur = mysql.conn.cursor()
+        
         print('SURFACE_ASOS_131_DAY_2000_2022.csv 저장 시작')
         cur.execute(i)
         mysql.conn.close()
     if i==asos:
-        cur = mysql.conn.cursor()
+        
         cur.execute(i)
-        print('SURFACE_ASOS_131_DAY 테이블 생성완료')
         mysql.conn.commit()
+        print('SURFACE_ASOS_131_DAY 테이블 생성완료')
+        
                
     elif i==tourspot:
-        cur = mysql.conn.cursor()
+        
         cur.execute(i)
-        print('TourSpot 테이블 생성완료')
         mysql.conn.commit()
+        print('TourSpot 테이블 생성완료')
+        
         
     else: 
         print('SURFACE_ASOS_131_DAY에 데이터저장 완료')
