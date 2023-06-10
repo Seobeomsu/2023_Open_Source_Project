@@ -46,11 +46,11 @@ sql = '''
 list = [asos,tourspot,sql]
 
 for i in list:
-    if i==sql:
+    if i==asos:
         print('SURFACE_ASOS_131_DAY_2000_2022.csv 저장 시작')
     cur.execute(i)
     mysql.conn.commit()
-    if i==asos:
+    if i==sql:
         print('SURFACE_ASOS_131_DAY 테이블 생성완료')
     elif i==tourspot:
         print('TourSpot 테이블 생성완료')
