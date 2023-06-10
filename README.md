@@ -1,7 +1,8 @@
 # 2023_Open_Source_Project 
 # 놀러갈래
+![character](https://github.com/Seobeomsu/2023_Open_Source_Project/assets/127263680/8cf072f9-4cb6-4bf9-b901-c25e85f357b2)
 
-![](https://github.com/Seobeomsu/2023_Open_Source_Project/blob/front/frontend/src/image/character.png)
+
 
 - [Project summary](#da-design-server)
   - [Purpose](#purpose)
