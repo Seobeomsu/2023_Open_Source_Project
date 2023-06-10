@@ -68,8 +68,8 @@ export default function Intro() {
             <TextWrap>
               <Text>2023년도 오픈소스 프로젝트</Text>
               <Text>2019019014 서범수</Text>
-              <Text>2019019014 서범수</Text>
-              <Text>2019019014 서범수</Text>
+              <Text>2020069051 안제원</Text>
+              <Text>2021040008 양수아</Text>
               </TextWrap>
             </motion.div>
           )}
