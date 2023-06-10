@@ -64,4 +64,12 @@ def process_weather_data(weather_data):
             })
 
     return processed_data
+    
+    def run_server():
+    server_address = ("", 8000)
+    httpd = http.server.HTTPServer(server_address, MyRequestHandler)
+    print("Server running on port 8000...")
+    httpd.serve_forever()
+    
+    
 
