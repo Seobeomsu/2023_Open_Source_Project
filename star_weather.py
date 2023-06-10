@@ -5,8 +5,8 @@ API_KEY = "Cy2hhB4CjnW9YfGUIRuM8eJD2ywoJH1SBWFqYHxWi45mcv79MUbHVrYA1XK%2BeAKvgo4
 
 # 날씨 점수 계산 함수
 def calculate_weather_score(weather_data):
-    # 기상환경 점수 계산 로직을 구현합니다.
-    # 예시로는 기온과 강수량을 기준으로 점수를 매깁니다.
+    # 기상환경 점수 계산 로직을 구현
+    # 예시로는 기온과 강수량을 기준으로 점수를 매기기.
     temperature = weather_data["temperature"]
     precipitation = weather_data["precipitation"]
 
@@ -18,7 +18,7 @@ def calculate_weather_score(weather_data):
 
     return score
 
-# 중기예보 조회 함수
+# 단기예보 조회 함수
 def get_midterm_forecast(reg_id):
     base_url = "http://apis.data.go.kr/1360000/MidFcstInfoService"
     endpoint = "/getMidLandFcst"
@@ -40,8 +40,6 @@ def get_midterm_forecast(reg_id):
         return data
 
     return None
-
-# 별 관측하기 좋은 날짜 추천 함수
 # 별 관측하기 좋은 날짜 추천 함수
 def recommend_observation_dates(reg_id):
     forecast_data = get_midterm_forecast(reg_id)
