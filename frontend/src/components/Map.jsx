@@ -12,9 +12,8 @@ const Svg = styled.svg`
 	width: 500px;
 	height: 700px;
 	path{	fill: #ffffff; }
-	path:hover { fill: #fbce7b; transition: 0.5s; }
+	path:hover { fill: #ffe0a1; transition: 0.5s; }
 `
-
 const Text = styled.div`
 	text-align: center;
 	font-size: 24px;
@@ -45,11 +44,11 @@ export default function Map(){
 			const childElement = svgElement.children[legioncode.code];
 			childElement.style = "transition: 0.5s;"
 			childElement.style.fill = "#d1f2ff";
-			childElement.style = ":hover{fill : #fbce7b}"
+			childElement.style = ":hover{fill : #fde6b8}"
 		}
 		const svgElement = document.querySelector('svg');
 		const childElement = svgElement.children[n];
-		childElement.style= "transition: 0.5s; fill: #dc3545;"
+		childElement.style= "transition: 0.5s; fill: #ff7f8e;"
 	}
 
   return(

@@ -25,15 +25,15 @@ const Button = styled.button`
   font-weight: bold;
   font-family: "Noto Sans KR", sans-serif;
   color: #252525;
-  background-color: #67af78;
+  background-color: #78dd8f;
   border: 0;
 
   &:hover{
-    background: #e0a800;
+    background: #ffe0a1;
     transition: 0.5s;
   }
   &:focus {
-    background-color: #dc3545;
+    background-color: #ff7f8e;
   }
   &:active{}
 `
