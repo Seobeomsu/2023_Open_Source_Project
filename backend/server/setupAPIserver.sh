@@ -29,7 +29,8 @@ sudo cp server/DB/SURFACE_ASOS_131_DAY_2000_2022.csv /var/lib/mysql
 
 python3 server/src/create_mysql_db.py
 
-python3 sever/src/tour_spot_crawling.py
+python3 server/src/tour_spot_crawling.py
+
 
 echo "MYSQL DB 생성완료"
 

@@ -12,4 +12,4 @@ selenium
 sqlalchemy
 tensorflow
 uwsgi
-
+webdriver_manager
