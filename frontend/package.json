@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-horizontal-scrolling-menu": "^4.0.4",
     "react-router-dom": "^6.11.2",
+    "react-slick": "^0.29.0",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.11",
     "vite-plugin-babel-macros": "^1.0.6",
