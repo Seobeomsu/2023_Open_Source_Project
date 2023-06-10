@@ -11,7 +11,7 @@ const Wrap = styled.div`
 `
 
 export default function PlaceWrap() {
-  const PlaceData = JSON.parse(localStorage.getItem('PlaceData'));
+  const PlaceData = JSON.parse(localStorage.getItem('PlaceData')); // 데이터 로드
 
   return (
     <Wrap>
