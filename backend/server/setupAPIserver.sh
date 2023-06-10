@@ -14,13 +14,18 @@ CreateDIR=/var/www/uwsgi
 sudo mkdir $CreateDIR
 
 sudo chmod -R 755 /var/run/mysql
+sudo chmod 766 /etc/mysql/my.cnf
+
+sudo echo secure-file-priv=\"\" >> /etc/mysql/my.cnf
+
+sudo chmod 755 /etc/mysql/my.cnf
 
 sudo service nginx start
 sudo service mysql start
 
 python3 server/src/set_up_mysql.py
 
-sudo cp server/DB/SURFACE_ASOS_131_DAY_2012_2022.csv /var/lib/mysql
+sudo cp server/DB/SURFACE_ASOS_131_DAY_2000_2022.csv /var/lib/mysql
 
 python3 server/src/create_mysql_db.py
 
