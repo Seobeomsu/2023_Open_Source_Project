@@ -51,19 +51,19 @@ export default function LeisureSelectbox() {
     <Wrapper>
       <motion.ul variants={list} initial="hidden" animate="visible">
         <motion.li variants={item}>
-          <Button vari="activity" size="lg" context="꽃놀이"/>
+          <Button vari="activity" size="lg" context="꽃놀이" code="01"/>
         </motion.li>
         <motion.li variants={item}>
-          <Button vari="activity" size="lg" context="물놀이"/>
+          <Button vari="activity" size="lg" context="물놀이" code="02"/>
         </motion.li>
         <motion.li variants={item}>
-          <Button vari="activity" size="lg" context="캠피잉"/>
+          <Button vari="activity" size="lg" context="캠피잉" code="03"/>
         </motion.li>
         <motion.li variants={item}>
-          <Button vari="activity" size="lg" context="피크닉"/>
+          <Button vari="activity" size="lg" context="피크닉" code="04"/>
         </motion.li>
         <motion.li variants={item}>
-          <Button vari="activity" size="lg" context="별구경"/>
+          <Button vari="activity" size="lg" context="별구경" code="05"/>
         </motion.li>
       </motion.ul>
       <motion.div variants={open} initial="hidden" animate="visible">

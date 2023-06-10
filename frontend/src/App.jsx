@@ -5,13 +5,14 @@ import Intro from "./pages/Intro";
 import GoodDay from "./pages/GoodDay";
 import Login from "./pages/Login";
 import { createGlobalStyle } from "styled-components";
+import Loding from "./pages/Loding";
 
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
 v2.0 | 20110126
 License: none (public domain)
 */
-
+::-webkit-scrollbar{display: none;}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -65,6 +66,7 @@ function App() {
         <Route path="/" element={<Intro/>}></Route>
         <Route path="/Login" element={<Login/>}></Route>
         <Route path="/Home" element={<Home/>}></Route>
+        <Route path="/Loding" element={<Loding></Loding>}></Route>
         <Route path="/GoodDay" element={<GoodDay/>}></Route>
       </Routes>
     </BrowserRouter>
