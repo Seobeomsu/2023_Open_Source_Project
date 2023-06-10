@@ -55,12 +55,12 @@ for i in list:
         cur = mysql.conn.cursor()
         print('SURFACE_ASOS_131_DAY 테이블 생성완료')
         mysql.conn.commit()
-        mysql.conn.close()        
+               
     elif i==tourspot:
         cur = mysql.conn.cursor()
         print('TourSpot 테이블 생성완료')
         mysql.conn.commit()
-        mysql.conn.close()
+        
     else: 
         print('SURFACE_ASOS_131_DAY에 데이터저장 완료')
     time.sleep(5)
