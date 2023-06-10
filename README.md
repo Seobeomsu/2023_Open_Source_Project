@@ -120,7 +120,6 @@ http://localhost:5173
 |Seobeomsu : 서범수|
 |---|
 |yangsua   : 양수아|
-|---|
 |AhnJewon  : 안제원|
 
 ---
