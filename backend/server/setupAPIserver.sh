@@ -20,6 +20,8 @@ sudo service mysql start
 
 python3 server/src/set_up_mysql.py
 
+sudo cp server/DB/SURFACE_ASOS_131_DAY_2012_2022.csv /var/lib/mysql
+
 python3 server/src/create_mysql_db.py
 
 python3 sever/src/tour_spot_crawling.py
