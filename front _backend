@@ -1,21 +1,21 @@
+import http.server
 import requests
-from flask import Flask, jsonify
 
-app = Flask(__name__)
 
-# API 인증키
 API_KEY = "Cy2hhB4CjnW9YfGUIRuM8eJD2ywoJH1SBWFqYHxWi45mcv79MUbHVrYA1XK%2BeAKvgo45fGbS2%2B68GnXROF6ipw%3D%3D"
 
-# API 엔드포인트 - 데이터 전송
-@app.route("/data", methods=["GET"])
-def get_data():
-    # API 호출하여 데이터 가져오기
-    weather_data = get_weather_data()  # 날씨 데이터 가져오기 함수 호출
 
-    # 데이터 가공 및 필요한 형식으로 변환
-    processed_data = process_weather_data(weather_data)  # 날씨 데이터 가공 함수 호출
+class MyRequestHandler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        # 요청 처리 로직을 구현합니다.
+        if self.path == "/data":
+            weather_data = get_weather_data()  # 날씨 데이터 가져오기 함수 호출
+            processed_data = process_weather_data(weather_data)  # 날씨 데이터 가공 함수 호출
+            self.send_response(200)
+            self.send_header("Content-type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(processed_data).encode())
 
-    return jsonify(processed_data)
 
 # 날씨 데이터 가져오기 함수
 def get_weather_data():
