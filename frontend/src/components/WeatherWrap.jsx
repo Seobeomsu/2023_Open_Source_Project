@@ -25,6 +25,7 @@ const weatherdata = [ // 총 10개
 ]
 
 export default function WeatherWrap() {
+  // const WeatherData = JSON.parse(localStorage.getItem('WeatherData')); // 데이터 로드
   return (
     <Wrap>
         {weatherdata.map((item)=>(

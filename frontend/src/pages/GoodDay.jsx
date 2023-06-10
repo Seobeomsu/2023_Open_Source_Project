@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import WeatherWrap from '../components/WeatherWrap'
 import PlaceWrap from '../components/PlaceWrap'
+import GetData from '../components/GetData'
 
 const Wrap = styled.div`
   height: 900px;
