@@ -41,6 +41,11 @@ sudo apt-get install nginx
 sudo apt-get install mysql-server mysql-client
 ```
 
+* Install uWSGI
+```sh
+sudo apt-get install uwsgi
+```
+
 * Install uWSGI-Plugin-Python3
 
 ```sh
