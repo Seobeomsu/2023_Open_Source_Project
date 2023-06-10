@@ -87,7 +87,10 @@ def process_weather_data(weather_data):
 
     return score
     
+    # 중기예보 조회 함수
     
+    def get_midterm_forecast(reg_id):
+    base_url = "http://apis.data.go.kr/1360000
     
     
     
