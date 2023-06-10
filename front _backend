@@ -102,7 +102,12 @@ def process_weather_data(weather_data):
         "tmFc": "202305171800"  # 기준 날짜와 시간 설정 (YYYYMMDDHHMM 형식)
     }
 
-  
+  response = requests.get(url, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+
+    return None
     
     
     
