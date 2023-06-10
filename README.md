@@ -1,5 +1,5 @@
-# 2023_Open_Source_Project 
-# 놀러갈래
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=놀러%20갈래!&fontSize=100&animation=fadeIn&fontAlignY=38&desc=2023%20Open%20Source%20Project&descSize=30&descAlignY=60&descAlign=62)
+
 ![character](https://github.com/Seobeomsu/2023_Open_Source_Project/assets/127263680/8cf072f9-4cb6-4bf9-b901-c25e85f357b2)
 
 
