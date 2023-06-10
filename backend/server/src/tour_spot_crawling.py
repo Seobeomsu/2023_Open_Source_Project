@@ -24,8 +24,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 
 #크롤링할 구글맵 접속
 ChromeDriverManager().install()
-executable_path="/usr/bin/chromedriver"
-driver = webdriver.Chrome(executable_path,
+driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver",
                           chrome_options=chrome_options)
 driver.get("https://www.google.com/maps/")
 time.sleep(2)
