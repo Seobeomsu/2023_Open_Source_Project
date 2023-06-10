@@ -19,7 +19,7 @@ asos = f'''
             avgWs FLOAT NOT NULL, 
             avgTd FLOAT NOT NULL, 
             avgRhm FLOAT NOT NULL, 
-            angPa FLOAT NOT NULL
+            angPa FLOAT NOT NULL,
             PRIMARY KEY (tm) )
         '''
 
